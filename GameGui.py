@@ -1,7 +1,7 @@
 import pygame
 
 class GameGUI:
-    def __init__(self, width=1000, height=1000):
+    def __init__(self, width=550, height=500):
         self.cell_size = 50
         self.width = width
         self.height = height

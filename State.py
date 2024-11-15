@@ -27,26 +27,20 @@ class State:
     
     def check(self, other_state):
         if len(self.grid) != len(other_state.grid):
-            print(False)
-            return 
+            return False
         for row_self, row_other in zip(self.grid, other_state.grid):
             if len(row_self) != len(row_other):
-                print(False)
-                return
+                return False
             for cell_self, cell_other in zip(row_self, row_other):
                 if cell_self.cell_type != cell_other.cell_type or cell_self.color != cell_other.color:
-                    print(False)
-                    return
-        print(True)
-        return
+                    return False
+        return True
     
     def win(self):
         for row in self.grid:
             for cell in row:
                 if cell.cell_type == "player" or cell.cell_type == "merge":
-                    print("still play")
                     return True
-        print("End game")
         return False
     
     def move_players_right(self):
@@ -66,9 +60,9 @@ class State:
                                 new_grid[row][col].cell_type = "empty"
                                 new_grid[row][col].color = None
                             elif new_grid[row][next_col].cell_type == "target" and new_grid[row][col].color == new_grid[row][next_col].color:
-                                new_grid[row][next_col].cell_type = None
+                                new_grid[row][next_col].cell_type = "empty"
                                 new_grid[row][next_col].color = None
-                                new_grid[row][col].cell_type = None
+                                new_grid[row][col].cell_type = "empty"
                                 new_grid[row][col].color = None
                                 break
                             elif new_grid[row][next_col].cell_type == "target" and new_grid[row][col].color != new_grid[row][next_col].color:
@@ -134,7 +128,6 @@ class State:
                                 new_grid[row][next_col].cell_type = "merge"
                                 new_grid[row][next_col].color = new_grid[row][col].color
                                 new_grid[row][next_col].color2 = color2
-                                print(new_grid[row][next_col].color2)
                                 new_grid[row][col].cell_type = "empty"
                                 new_grid[row][col].color = None
                         else :
