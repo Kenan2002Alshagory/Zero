@@ -1,5 +1,4 @@
 import copy
-import time
 
 class State:
     
@@ -15,7 +14,6 @@ class State:
 
     def __eq__(self, other):
         return self.priority == other.priority
-
 
     def print_grid(self):
         for row in self.grid:

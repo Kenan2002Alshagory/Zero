@@ -22,7 +22,7 @@ class Algorithm:
       #################if game End#############################
       if current_state.status == False:
         path.append(current_state)
-        while current_state.previous != None:
+        while current_state.previous is not None:
           current_state = current_state.previous
           path.append(current_state)
         path.reverse()
@@ -53,7 +53,7 @@ class Algorithm:
       #################if game End#############################
       if current_state.status == False:
           path.append(current_state)
-          while current_state.previous != None:
+          while current_state.previous is not None:
               current_state = current_state.previous
               path.append(current_state)
           path.reverse()
