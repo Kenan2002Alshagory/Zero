@@ -68,7 +68,7 @@ if __name__ == "__main__":
     # pygame.init()
 
     # status = True
-    # initial_state = State(grid3, status,None) 
+    # initial_state = State(grid1, status,None) 
     # initial_state.next_states_create()
 
     # game_gui = GameGUI()
@@ -104,20 +104,25 @@ if __name__ == "__main__":
     ####################################Algorthim_play#########################################
 
     status = True
-    initial_state = State(grid3, status, None) 
+    initial_state = State(grid2, status, None,0) 
     algorithm = Algorithm(initial_state)
 
     bfs_soluation = algorithm.BFS()
     dfs_soluation = algorithm.DFS()
+    ucs_soluation = algorithm.ucs_solve()
 
 
-    print("BFS____SOLUATION")
-    for state in bfs_soluation:
+    # print("BFS____SOLUATION")
+    # for state in bfs_soluation:
+    #     state.print_grid()
+    #     print("####################################################")
+
+    # print("DFS____SOLUATION")
+    # for state in dfs_soluation:
+    #     state.print_grid()
+    #     print("####################################################")
+
+    print("UCS____SOLUATION")
+    for state in ucs_soluation:
         state.print_grid()
         print("####################################################")
-
-    print("DFS____SOLUATION")
-    for state in dfs_soluation:
-        state.print_grid()
-        print("####################################################")
-

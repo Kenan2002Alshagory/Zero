@@ -3,11 +3,13 @@ import time
 
 class State:
     
-    def __init__(self, grid, status, previous):
+    def __init__(self, grid, status, previous,priority):
         self.grid = grid  
         self.status = status 
         self.previous = previous
         self.next_states = None
+        self.priority = priority
+
 
 
     def print_grid(self):
@@ -96,9 +98,9 @@ class State:
                         col = next_col 
                         next_col += 1
                     updated_colors.append(new_grid[row][col].color)
-        new_state1 = State(new_grid,self.status,self)
+        new_state1 = State(new_grid,self.status,self,self.priority)
         is_win = new_state1.win()
-        new_state = State(new_grid,is_win,self)
+        new_state = State(new_grid,is_win,self,self.priority)
         return new_state
 
     def move_players_left(self):
@@ -154,9 +156,9 @@ class State:
                         col = next_col
                         next_col -= 1
                     updated_colors.append(new_grid[row][col].color)
-        new_state1 = State(new_grid,self.status,self)
+        new_state1 = State(new_grid,self.status,self,self.priority)
         is_win = new_state1.win()
-        new_state = State(new_grid,is_win,self)
+        new_state = State(new_grid,is_win,self,self.priority)
         return new_state
 
     def move_players_up(self):
@@ -212,9 +214,9 @@ class State:
                         row = next_row
                         next_row -= 1
                     updated_colors.append(new_grid[row][col].color)
-        new_state1 = State(new_grid,self.status,self)
+        new_state1 = State(new_grid,self.status,self,self.priority)
         is_win = new_state1.win()
-        new_state = State(new_grid,is_win,self)
+        new_state = State(new_grid,is_win,self,self.priority)
         return new_state
 
     def move_players_down(self):
@@ -270,9 +272,9 @@ class State:
                         row = next_row
                         next_row += 1
                     updated_colors.append(new_grid[row][col].color)
-        new_state1 = State(new_grid,self.status,self)
+        new_state1 = State(new_grid,self.status,self,self.priority)
         is_win = new_state1.win()
-        new_state = State(new_grid,is_win,self)
+        new_state = State(new_grid,is_win,self,self.priority)
         return new_state
     
 
@@ -287,6 +289,9 @@ class State:
             "right": right,
             "left": left
         }
+
+    def get_cost(self):
+        return 1
 
 
 
