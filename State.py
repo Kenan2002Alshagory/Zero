@@ -10,6 +10,11 @@ class State:
         self.next_states = None
         self.priority = priority
 
+    def __lt__(self, other):
+        return self.priority < other.priority
+
+    def __eq__(self, other):
+        return self.priority == other.priority
 
 
     def print_grid(self):
@@ -289,9 +294,6 @@ class State:
             "right": right,
             "left": left
         }
-
-    def get_cost(self):
-        return 1
 
 
 

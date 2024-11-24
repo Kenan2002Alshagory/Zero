@@ -1,6 +1,4 @@
 import queue
-import heapq
-from itertools import count
 class Algorithm:
 
   def __init__(self,init_state):
@@ -72,29 +70,40 @@ class Algorithm:
 
 ############################################################################################
 
-  def ucs_solve(self):
-    priority_queue = []
-    counter = count()
+  def UCS(self): 
+    # Priority Queue for UCS (min-heap)
+    pq = queue.PriorityQueue()
+    path = []
+    visited = []
+    
+    # Push initial state with cost 0
+    pq.put((self.init_state.priority, self.init_state))
 
-    heapq.heappush(priority_queue, (0, next(counter), self.initial_state))
-    visited = set()
+    while not pq.empty():
+        # Pop the state with the lowest cost
+        cost, current_state = pq.get()
 
-    while priority_queue:
-        cumulative_cost, _, current_state = heapq.heappop(priority_queue)
-
-        if current_state.check_win():
-            return current_state
-
-        state_id = tuple(tuple(cell.type_of_cell for cell in row) for row in current_state.grid)
-        if state_id in visited:
+        # Check if already visited
+        if any(current_state.check(visited_state) for visited_state in visited):
             continue
-        visited.add(state_id)
+        
+        # Mark the current state as visited
+        visited.append(current_state)
 
+        ################# If game End #############################
+        if current_state.status == False:
+            # Build path from the current state to the initial state
+            path.append(current_state)
+            while current_state.previous is not None:
+                current_state = current_state.previous
+                path.append(current_state)
+            path.reverse()
+            return path
+
+        ################## If game not End #########################
         current_state.next_states_create()
 
-        if current_state.next_states:
-            for next_state in current_state.next_states.values():
-                cost = cumulative_cost + next_state.get_cost()
-                heapq.heappush(priority_queue, (cost, next(counter), next_state))
-
-    return None
+        # Add next states to the priority queue with their cumulative cost
+        for direction, state in current_state.next_states.items():
+            if not any(state.check(visited_state) for visited_state in visited):
+                pq.put((cost + 1, state))  # Uniform cost of 1 for each step

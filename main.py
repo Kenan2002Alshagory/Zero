@@ -103,14 +103,26 @@ if __name__ == "__main__":
     
     ####################################Algorthim_play#########################################
 
+    
+
+    # status = True
+    # initial_state = State(grid2, status, None, 0)  # Initial priority is 0
+    # algorithm = Algorithm(initial_state)
+
+    # ucs_solution = algorithm.UCS()
+
+    # # Print or process the solution
+    # for state in ucs_solution:
+    #     state.print_grid()
+    #     print()
+
     status = True
     initial_state = State(grid2, status, None,0) 
     algorithm = Algorithm(initial_state)
 
-    bfs_soluation = algorithm.BFS()
-    dfs_soluation = algorithm.DFS()
-    ucs_soluation = algorithm.ucs_solve()
-
+    # bfs_soluation = algorithm.BFS()
+    # dfs_soluation = algorithm.DFS()
+    ucs_soluation = algorithm.UCS()
 
     # print("BFS____SOLUATION")
     # for state in bfs_soluation:
