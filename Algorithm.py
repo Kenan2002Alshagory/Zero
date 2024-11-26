@@ -68,6 +68,37 @@ class Algorithm:
               stack.append(state)
 
 
+###########################################################################################
+
+  def DFS_recursive(self, current_state=None, visited=None, path=None):
+      if visited is None:
+          visited = []
+      if path is None:
+          path = []
+      
+      if current_state is None:
+          current_state = self.init_state
+
+      visited.append(current_state)
+
+      if current_state.status == False:  
+          while current_state is not None:
+              path.append(current_state)
+              current_state = current_state.previous
+          path.reverse()
+          return path
+
+      current_state.next_states_create()
+
+      for direction, state in current_state.next_states.items():
+          if not any(state.check(visited_state) for visited_state in visited):
+              result = self.DFS_recursive(state, visited, path)
+              if result:
+                  return result
+
+      return None
+
+
 ############################################################################################
 
   def UCS(self): 
@@ -103,7 +134,6 @@ class Algorithm:
         ################## If game not End #########################
         current_state.next_states_create()
 
-        # Add next states to the priority queue with their cumulative cost
         for direction, state in current_state.next_states.items():
             if not any(state.check(visited_state) for visited_state in visited):
-                pq.put((cost + 1, state))  # Uniform cost of 1 for each step
+                pq.put((cost + 1, state))  
