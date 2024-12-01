@@ -137,3 +137,10 @@ class Algorithm:
         for direction, state in current_state.next_states.items():
             if not any(state.check(visited_state) for visited_state in visited):
                 pq.put((cost + 1, state))  
+
+###############################################################################################
+
+###############################################################################################
+
+  # def A_STAR(sself):
+    

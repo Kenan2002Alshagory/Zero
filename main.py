@@ -104,31 +104,33 @@ if __name__ == "__main__":
     ####################################Algorthim_play#########################################
 
     status = True
-    initial_state = State(grid2, status, None,0) 
+    initial_state = State(grid3, status, None,0) 
     algorithm = Algorithm(initial_state)
 
-    bfs_soluation = algorithm.BFS()
-    dfs_soluation = algorithm.DFS()
-    dfs_recursive_soluation = algorithm.DFS_recursive(initial_state)
-    ucs_soluation = algorithm.UCS()
+    print(initial_state.heuristic())
+
+    # bfs_soluation = algorithm.BFS()
+    # dfs_soluation = algorithm.DFS()
+    # dfs_recursive_soluation = algorithm.DFS_recursive(initial_state)
+    # ucs_soluation = algorithm.UCS()
 
 
-    print("BFS____SOLUATION")
-    for state in bfs_soluation:
-        state.print_grid()
-        print("####################################################")
+    # print("BFS____SOLUATION")
+    # for state in bfs_soluation:
+    #     state.print_grid()
+    #     print("####################################################")
 
-    print("DFS____SOLUATION")
-    for state in dfs_soluation:
-        state.print_grid()
-        print("####################################################")
+    # print("DFS____SOLUATION")
+    # for state in dfs_soluation:
+    #     state.print_grid()
+    #     print("####################################################")
 
-    print("DFS____RECURSIVE___SOLUATION")
-    for state in dfs_recursive_soluation:
-        state.print_grid()
-        print("####################################################")
+    # print("DFS____RECURSIVE___SOLUATION")
+    # for state in dfs_recursive_soluation:
+    #     state.print_grid()
+    #     print("####################################################")
 
-    print("UCS____SOLUATION")
-    for state in ucs_soluation:
-        state.print_grid()
-        print("####################################################")
+    # print("UCS____SOLUATION")
+    # for state in ucs_soluation:
+    #     state.print_grid()
+    #     print("####################################################")
