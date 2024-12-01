@@ -129,6 +129,7 @@ class Algorithm:
                 current_state = current_state.previous
                 path.append(current_state)
             path.reverse()
+            print(cost)
             return path
 
         ################## If game not End #########################
@@ -142,5 +143,40 @@ class Algorithm:
 
 ###############################################################################################
 
-  # def A_STAR(sself):
+  def A_STAR(self):
+    # Priority Queue for UCS (min-heap)
+    pq = queue.PriorityQueue()
+    path = []
+    visited = []
     
+    # Push initial state with cost 0
+    pq.put((self.init_state.priority+self.init_state.heuristic(), self.init_state))
+
+    while not pq.empty():
+        # Pop the state with the lowest cost
+        cost, current_state = pq.get()
+
+        # Check if already visited
+        if any(current_state.check(visited_state) for visited_state in visited):
+            continue
+        
+        # Mark the current state as visited
+        visited.append(current_state)
+
+        ################# If game End #############################
+        if current_state.status == False:
+            # Build path from the current state to the initial state
+            path.append(current_state)
+            while current_state.previous is not None:
+                current_state = current_state.previous
+                path.append(current_state)
+            path.reverse()
+            print(cost)
+            return path
+
+        ################## If game not End #########################
+        current_state.next_states_create()
+
+        for direction, state in current_state.next_states.items():
+            if not any(state.check(visited_state) for visited_state in visited):
+                pq.put((cost + 1 + state.heuristic(), state))  

@@ -107,13 +107,12 @@ if __name__ == "__main__":
     initial_state = State(grid3, status, None,0) 
     algorithm = Algorithm(initial_state)
 
-    print(initial_state.heuristic())
 
     # bfs_soluation = algorithm.BFS()
     # dfs_soluation = algorithm.DFS()
     # dfs_recursive_soluation = algorithm.DFS_recursive(initial_state)
     # ucs_soluation = algorithm.UCS()
-
+    a_star_soluation = algorithm.A_STAR()
 
     # print("BFS____SOLUATION")
     # for state in bfs_soluation:
@@ -134,3 +133,8 @@ if __name__ == "__main__":
     # for state in ucs_soluation:
     #     state.print_grid()
     #     print("####################################################")
+
+    print("A_STAR____SOLUATION")
+    for state in a_star_soluation:
+        state.print_grid()
+        print("####################################################")
